@@ -1,9 +1,51 @@
-function deleteItem(event){
+//VARIABLES GENERALES
 
+let theBody = document.getElementsByTagName('body');
+
+//CALCUALTE TOTAL PRICES FUNCTION
+
+const calculateTotalPrice = () =>{
+  let totalPrice = 0;
+  
+  let pricesArray = [...document.getElementsByClassName('price')];
+  
+  let productsQuantityArray = [...document.getElementsByClassName('quantity')];
+  
+  let productTotalPriceArray = [...document.getElementsByClassName('product-total-price')];
+
+  let finalTotalPrice= [...document.getElementsByClassName('total-price')];
+  
+  for(let i = 0; i < productsQuantityArray.length; i++){
+    
+    let productTotalPrice = parseFloat(productsQuantityArray[i].value) * parseFloat(pricesArray[i].innerText);
+    
+    productTotalPriceArray[i].innerText = productTotalPrice
+
+    totalPrice += productTotalPrice
+    
+  }
+
+  finalTotalPrice[0].innerText = totalPrice; 
 }
 
-function getPriceByProduct(itemNode){
+//CALCULATE TOTAL PRICES CLICK EVENT
 
+document.getElementById('calc-prices-button').addEventListener('click',calculateTotalPrice)
+
+// DELETE ITEM FUNCTION
+
+function deleteItem(event){
+ 
+  if(event.currentTarged){
+    parentNode.removeChild(div)
+  }
+  
+}
+
+document.getElementsByClassName('btn-delete').addEventListener('click',deleteItem)
+
+/*function getPriceByProduct(itemNode){
+  
 }
 
 function updatePriceByProduct(productPrice, index){
@@ -49,4 +91,4 @@ window.onload = function(){
   for(var i = 0; i<deleteButtons.length ; i++){
     deleteButtons[i].onclick = deleteItem;
   }
-};
+};*/
