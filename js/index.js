@@ -7,13 +7,13 @@ let theBody = document.getElementsByTagName('body');
 const calculateTotalPrice = () =>{
   let totalPrice = 0;
   
-  let pricesArray = [...document.getElementsByClassName('price')];
+  let pricesArray = document.getElementsByClassName('price');
   
-  let productsQuantityArray = [...document.getElementsByClassName('quantity')];
+  let productsQuantityArray = document.getElementsByClassName('quantity');
   
-  let productTotalPriceArray = [...document.getElementsByClassName('product-total-price')];
+  let productTotalPriceArray = document.getElementsByClassName('product-total-price');
 
-  let finalTotalPrice= [...document.getElementsByClassName('total-price')];
+  let finalTotalPrice= document.getElementsByClassName('total-price');
   
   for(let i = 0; i < productsQuantityArray.length; i++){
     
@@ -35,16 +35,38 @@ document.getElementById('calc-prices-button').addEventListener('click',calculate
 // DELETE ITEM FUNCTION
 
 function deleteItem(event){
+
+    if(event.target){
+      let element = event.target.parentNode.parentNode;
+      console.log(element)
+      theBody[0].removeChild(element)
+    }
  
-  if(event.currentTarged){
-    parentNode.removeChild(div)
-  }
-  
+   
 }
 
-document.getElementsByClassName('btn-delete').addEventListener('click',deleteItem)
 
-/*function getPriceByProduct(itemNode){
+let addClickEvent = () => {
+  let arrDeleteBtn = document.getElementsByClassName('btn-delete')
+  
+  for (let i = 0; i < arrDeleteBtn.length; i++){
+    arrDeleteBtn[i].addEventListener('click',deleteItem)
+    console.log(arrDeleteBtn[i])
+  }
+}
+addClickEvent()
+
+//CREAR INPUTS PARA INTRODUCIR NUEVOS PRODUCTOS
+
+let inputOne = document.createElement("input");
+input.type = "text";
+input.className = "name-product";
+
+let inputTwo = document.createElement("input");
+input.type = "text";
+input.className = "name-product";
+/*
+function getPriceByProduct(itemNode){
   
 }
 
